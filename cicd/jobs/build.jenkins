@@ -1,0 +1,20 @@
+#!/usr/bin/env groovy
+
+pipelineJob('build-example') {
+    displayName('Build Example')
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/RitushreePurkait/jenkins-operator.git')
+                        credentials('jenkins-operator')
+                    }
+                    branches('*/main')
+                }
+            }
+            scriptPath('cicd/pipelines/build.jenkins')
+        }
+    }
+}
